@@ -1,0 +1,163 @@
+.shadow-rotate-container {
+  --accent: #639;
+  --panel-bg: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--accent) 4%, white),
+    color-mix(in oklab, var(--accent) 14%, white)
+  );
+  --panel-border: color-mix(in oklab, var(--accent) 22%, transparent);
+  --panel-shadow: 0 18px 40px color-mix(in oklab, var(--accent) 20%, transparent);
+  --text-color: color-mix(in oklab, var(--accent) 42%, black);
+  --accent-strong: color-mix(in oklab, var(--accent) 80%, black);
+  --track-color: color-mix(in oklab, var(--accent) 20%, white);
+  --track-fill-color: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--accent) 90%, black),
+    color-mix(in oklab, var(--accent) 80%, white)
+  );
+  --drop-shadow-color: color-mix(in oklab, var(--text-color) 16%, transparent);
+  --track-height: 2px;
+  --track-radius: 999px;
+  --thumb-size: 1.25rem;
+  --thumb-border: 2px solid color-mix(in oklab, var(--accent) 3%, white);
+  --thumb-shadow: 0 6px 16px color-mix(in oklab, var(--accent) 24%, transparent);
+  --control-width: min(100%, 32rem);
+  --control-gap: 0.9rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  color: var(--text-color);
+  font-size: 0.85rem;
+  font-family: SF Mono, Consolas, "Liberation Mono", Courier, monospace;
+}
+
+.shadow-rotate-css {
+  --angle: 0deg;
+  --shadow-x-distance: 15px;
+  --shadow-y-distance: 30px;
+  --shadow-x: calc(
+    cos(var(--angle)) * var(--shadow-x-distance) + sin(var(--angle)) *
+      var(--shadow-y-distance)
+  );
+  --shadow-y: calc(
+    cos(var(--angle)) * var(--shadow-y-distance) - sin(var(--angle)) *
+      var(--shadow-x-distance)
+  );
+  rotate: var(--angle);
+  filter: drop-shadow(
+    var(--shadow-x) var(--shadow-y) 5px var(--drop-shadow-color)
+  );
+}
+
+.shadow-rotate-path {
+  fill: var(--accent);
+}
+
+.sr-shadow-readout {
+  width: 100%;
+  display: grid;
+  color: var(--accent-strong);
+}
+
+.sr-shadow-readout__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sr-controls {
+  width: 100%;
+  display: grid;
+  gap: var(--control-gap);
+  margin-top: 1rem;
+}
+
+.sr-controls__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sr-controls__label output {
+  color: var(--accent-strong);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  min-width: 50px;
+}
+
+.sr-controls__range {
+  --range-progress: 0%;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: var(--thumb-size);
+  border-radius: var(--track-radius);
+  background: transparent;
+  cursor: pointer;
+}
+
+.sr-controls__range:focus-visible {
+  outline: none;
+}
+
+.sr-controls__range::-webkit-slider-runnable-track {
+  height: var(--track-height);
+  border-radius: var(--track-radius);
+  background:
+    var(--track-fill-color) 0 0 / var(--range-progress) 100% no-repeat,
+    var(--track-color);
+}
+
+.sr-controls__range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
+  border: var(--thumb-border);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: var(--thumb-shadow);
+  transition: transform 120ms ease, background-color 120ms ease;
+}
+
+.sr-controls__range:hover::-webkit-slider-thumb,
+.sr-controls__range:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.08);
+  background: var(--accent-strong);
+}
+
+.sr-controls__range::-moz-range-track {
+  height: var(--track-height);
+  border: 0;
+  border-radius: var(--track-radius);
+  background: var(--track-color);
+}
+
+.sr-controls__range::-moz-range-progress {
+  height: var(--track-height);
+  border-radius: var(--track-radius);
+  background: var(--track-fill-color);
+}
+
+.sr-controls__range::-moz-range-thumb {
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border: var(--thumb-border);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: var(--thumb-shadow);
+  transition: transform 120ms ease, background-color 120ms ease;
+}
+
+.sr-controls__range:hover::-moz-range-thumb,
+.sr-controls__range:focus-visible::-moz-range-thumb {
+  transform: scale(1.08);
+  background: var(--accent-strong);
+}

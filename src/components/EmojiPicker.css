@@ -1,0 +1,144 @@
+/* Fixed position wrapper — bottom-left corner */
+.emoji-picker-wrapper {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 999;
+}
+
+@supports (appearance: base-select) {
+
+  .emoji-select,
+  .emoji-select::picker(select) {
+    appearance: base-select;
+  }
+
+  .emoji-select {
+    width: 20rem;
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .emoji-select:hover,
+  .emoji-select:focus,
+  .emoji-select:active {
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+
+  .emoji-select selectedcontent {
+    z-index: 2;
+    font-size: 3rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+    transition: transform 0.2s ease;
+  }
+
+  .emoji-select selectedcontent:hover {
+    transform: scale(1.15);
+  }
+
+  .emoji-select::picker-icon {
+    display: none;
+  }
+
+  .emoji-select {
+    position: relative;
+  }
+
+  .emoji-select option {
+    cursor: pointer;
+    position: absolute;
+    left: calc(50% - 2rem);
+    top: calc(50% - 2rem);
+    font-size: 2rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.5s;
+    background: transparent;
+    border: none;
+  }
+
+  .emoji-select option:hover {
+    scale: 1.15;
+  }
+
+  .emoji-select option::checkmark {
+    display: none;
+  }
+
+  .emoji-select:open option {
+    transform: rotate(calc(sibling-index() * 50deg)) translate(80px) rotate(calc(sibling-index() * -50deg));
+  }
+
+  .emoji-select::picker(select):popover-open {
+    opacity: 1;
+
+    @starting-style {
+      display: block;
+    }
+
+    top: calc(anchor(center) - 10em);
+    left: calc(anchor(center) - 10em);
+  }
+
+  .emoji-select::picker(select) {
+    z-index: 1;
+    outline: none;
+    border: none;
+    interpolate-size: allow-keywords;
+    border-radius: 10em;
+    background: transparent;
+    width: 20em;
+    height: 20em;
+    position: absolute;
+    top: calc(anchor(center) - 10em);
+    left: calc(anchor(center) - 10em);
+    transition: all 1s;
+    opacity: 0;
+    display: block;
+  }
+}
+
+/* Fallback for browsers that don't support base-select */
+@supports not (appearance: base-select) {
+  .emoji-picker-wrapper {
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .emoji-select {
+    font-size: 2rem;
+    padding: 0.5rem;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--surface);
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    text-align: center;
+  }
+
+  .emoji-select:hover {
+    transform: scale(1.1);
+  }
+}
