@@ -65,7 +65,12 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+
+  height: 70px;
+  /* kunci utama */
+  padding: 0 0rem;
+  /* hilangkan padding atas bawah */
+
   position: sticky;
   top: 0;
   z-index: 100;
@@ -75,11 +80,18 @@ a {
 }
 
 .logo {
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  /* penting */
   flex-shrink: 0;
+}
+
+.logo-img {
+  height: 45px;
+  /* sweet spot navbar */
+  width: auto;
+  object-fit: contain;
 }
 
 .nav-links {
