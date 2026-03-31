@@ -88,7 +88,7 @@
     transform: rotate(calc(sibling-index() * 50deg)) translate(80px) rotate(calc(sibling-index() * -50deg));
   }
 
-  .emoji-select::picker(select):popover-open {
+  .emoji-select:open::picker(select) {
     opacity: 1;
 
     @starting-style {
