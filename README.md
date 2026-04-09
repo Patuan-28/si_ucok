@@ -19,3 +19,6 @@ If you are developing a production application, we recommend using TypeScript wi
 # si_ucok
 Aplikasi Si Ucok
 >>>>>>> e986b63edb1c0b0857f3b0a1e88927d32be19b21
+
+How To Start?
+npm run dev

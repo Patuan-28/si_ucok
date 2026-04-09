@@ -30,6 +30,8 @@ export default function Navbar() {
         </div>
 
         <a href="#contact" className="nav-link" onClick={() => alert("Contact coming soon!")}>Contact</a>
+        <Link to="/game" className="nav-link">Game Guides</Link>
+        <Link to="/topups" className="nav-link">Top Up Store</Link>
         <ThemeToggle />
       </div>
     </nav>
