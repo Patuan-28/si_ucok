@@ -13,8 +13,8 @@ const PLAYER_STATS = {
 };
 
 const ENEMIES = [
-  { name: 'Goblin', emoji: '👺', maxHp: 80,  attack: 12, defense: 2, critChance: 0.1, missChance: 0.18, reward: 'You vanquished the Goblin!' },
-  { name: 'Orc',    emoji: '👹', maxHp: 110, attack: 16, defense: 4, critChance: 0.15, missChance: 0.12, reward: 'The Orc falls before you!' },
+  { name: 'Goblin', emoji: '👺', maxHp: 80, attack: 12, defense: 2, critChance: 0.1, missChance: 0.18, reward: 'You vanquished the Goblin!' },
+  { name: 'Orc', emoji: '👹', maxHp: 110, attack: 16, defense: 4, critChance: 0.15, missChance: 0.12, reward: 'The Orc falls before you!' },
   { name: 'Dragon', emoji: '🐉', maxHp: 180, attack: 25, defense: 8, critChance: 0.25, missChance: 0.08, reward: 'The Dragon is defeated — glory is yours!' },
 ];
 
@@ -32,8 +32,8 @@ function HpBar({ current, max, color }) {
   const pct = Math.max(0, Math.min(100, (current / max) * 100));
   const barColor =
     pct > 60 ? (color || 'var(--battle-hp-green)') :
-    pct > 30 ? 'var(--battle-hp-yellow)' :
-               'var(--battle-hp-red)';
+      pct > 30 ? 'var(--battle-hp-yellow)' :
+        'var(--battle-hp-red)';
 
   return (
     <div className="battle-hp-track">
@@ -59,26 +59,26 @@ function Fighter({ stats, currentHp, shaking, side }) {
 }
 
 function LogEntry({ entry }) {
-  const cls = entry.type === 'crit'    ? 'log-crit'
-            : entry.type === 'miss'   ? 'log-miss'
-            : entry.type === 'enemy'  ? 'log-enemy'
-            : entry.type === 'system' ? 'log-system'
-            : 'log-player';
+  const cls = entry.type === 'crit' ? 'log-crit'
+    : entry.type === 'miss' ? 'log-miss'
+      : entry.type === 'enemy' ? 'log-enemy'
+        : entry.type === 'system' ? 'log-system'
+          : 'log-player';
   return <div className={`log-entry ${cls}`}>{entry.text}</div>;
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function BattleGame() {
-  const [enemyIndex, setEnemyIndex]       = useState(0);
-  const [playerHp, setPlayerHp]           = useState(PLAYER_STATS.maxHp);
-  const [enemyHp, setEnemyHp]             = useState(ENEMIES[0].maxHp);
-  const [log, setLog]                     = useState([{ text: '⚔️ Battle started! Your move, Hero.', type: 'system' }]);
-  const [playerTurn, setPlayerTurn]       = useState(true);
-  const [gameOver, setGameOver]           = useState(null); // 'win' | 'lose'
-  const [playerShake, setPlayerShake]     = useState(false);
-  const [enemyShake, setEnemyShake]       = useState(false);
-  const [isAnimating, setIsAnimating]     = useState(false);
-  const [floatingText, setFloatingText]   = useState(null); // { text, side, key }
+  const [enemyIndex, setEnemyIndex] = useState(0);
+  const [playerHp, setPlayerHp] = useState(PLAYER_STATS.maxHp);
+  const [enemyHp, setEnemyHp] = useState(ENEMIES[0].maxHp);
+  const [log, setLog] = useState([{ text: '⚔️ Battle started! Your move, Hero.', type: 'system' }]);
+  const [playerTurn, setPlayerTurn] = useState(true);
+  const [gameOver, setGameOver] = useState(null); // 'win' | 'lose'
+  const [playerShake, setPlayerShake] = useState(false);
+  const [enemyShake, setEnemyShake] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [floatingText, setFloatingText] = useState(null); // { text, side, key }
   const logRef = useRef(null);
 
   const enemy = ENEMIES[enemyIndex];
@@ -227,7 +227,7 @@ export default function BattleGame() {
     <div className="battle-wrapper">
       {/* Header */}
       <div className="battle-header">
-        <h2 className="battle-title">⚔️ PvE Battle Arena</h2>
+        <h2 className="battle-title">⚔️ Ucok's PvE Battle Arena</h2>
         <div className="battle-enemy-badge">
           {ENEMIES.map((e, i) => (
             <span key={i} className={`enemy-dot ${i === enemyIndex ? 'active' : i < enemyIndex ? 'done' : ''}`}>

@@ -48,12 +48,12 @@ function getPseudoMoves(board, r, c, ep, castling) {
       else if (ep && ep[0] === nr && ep[1] === nc) push(nr, nc, 'enpassant');
     }
   } else if (t === 'N') {
-    for (const [dr, dc] of [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]]) {
+    for (const [dr, dc] of [[-2, -1], [-2, 1], [-1, -2], [-1, 2], [1, -2], [1, 2], [2, -1], [2, 1]]) {
       const nr = r + dr, nc = c + dc;
       if (inBounds(nr, nc) && board[nr][nc]?.c !== color) push(nr, nc);
     }
   } else if (t === 'K') {
-    for (const [dr, dc] of [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]) {
+    for (const [dr, dc] of [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]) {
       const nr = r + dr, nc = c + dc;
       if (inBounds(nr, nc) && board[nr][nc]?.c !== color) push(nr, nc);
     }
@@ -71,8 +71,8 @@ function getPseudoMoves(board, r, c, ep, castling) {
     }
   } else {
     const dirs = [];
-    if (t === 'R' || t === 'Q') dirs.push([-1,0],[1,0],[0,-1],[0,1]);
-    if (t === 'B' || t === 'Q') dirs.push([-1,-1],[-1,1],[1,-1],[1,1]);
+    if (t === 'R' || t === 'Q') dirs.push([-1, 0], [1, 0], [0, -1], [0, 1]);
+    if (t === 'B' || t === 'Q') dirs.push([-1, -1], [-1, 1], [1, -1], [1, 1]);
     for (const [dr, dc] of dirs) {
       let nr = r + dr, nc = c + dc;
       while (inBounds(nr, nc)) {
@@ -190,22 +190,22 @@ function getAIMove(board, ep, castling) {
 
 // ─── React Component ──────────────────────────────────────────────────────────
 export default function ChessGame() {
-  const [board, setBoard]           = useState(initialBoard);
-  const [selected, setSelected]     = useState(null);
+  const [board, setBoard] = useState(initialBoard);
+  const [selected, setSelected] = useState(null);
   const [highlights, setHighlights] = useState([]);
-  const [turn, setTurn]             = useState('w');
-  const [ep, setEp]                 = useState(null);
-  const [castling, setCastling]     = useState(INIT_CASTLING);
-  const [status, setStatus]         = useState('playing');
-  const [capturedW, setCapturedW]   = useState([]);
-  const [capturedB, setCapturedB]   = useState([]);
-  const [lastMove, setLastMove]     = useState(null);
+  const [turn, setTurn] = useState('w');
+  const [ep, setEp] = useState(null);
+  const [castling, setCastling] = useState(INIT_CASTLING);
+  const [status, setStatus] = useState('playing');
+  const [capturedW, setCapturedW] = useState([]);
+  const [capturedB, setCapturedB] = useState([]);
+  const [lastMove, setLastMove] = useState(null);
   const [aiThinking, setAiThinking] = useState(false);
 
   // Refs so AI timer always reads latest state
-  const boardRef    = useRef(board);
-  const epRef       = useRef(ep);
-  const castRef     = useRef(castling);
+  const boardRef = useRef(board);
+  const epRef = useRef(ep);
+  const castRef = useRef(castling);
   useEffect(() => { boardRef.current = board; }, [board]);
   useEffect(() => { epRef.current = ep; }, [ep]);
   useEffect(() => { castRef.current = castling; }, [castling]);
@@ -229,11 +229,11 @@ export default function ChessGame() {
       }
     }
 
-    const nb       = doMove(b, move);
-    const newEp    = move.special === 'double'
+    const nb = doMove(b, move);
+    const newEp = move.special === 'double'
       ? [move.to[0] - (actingColor === 'w' ? -1 : 1), move.to[1]]
       : null;
-    const newCast  = updateCastling(cast, move, b);
+    const newCast = updateCastling(cast, move, b);
     const nextTurn = actingColor === 'w' ? 'b' : 'w';
 
     setBoard(nb);
@@ -286,12 +286,12 @@ export default function ChessGame() {
     setLastMove(null); setAiThinking(false);
   };
 
-  const isSel   = (r, c) => selected?.[0] === r && selected?.[1] === c;
-  const isHl    = (r, c) => highlights.some(m => m.to[0] === r && m.to[1] === c);
-  const isLm    = (r, c) => lastMove && (
+  const isSel = (r, c) => selected?.[0] === r && selected?.[1] === c;
+  const isHl = (r, c) => highlights.some(m => m.to[0] === r && m.to[1] === c);
+  const isLm = (r, c) => lastMove && (
     (lastMove.from[0] === r && lastMove.from[1] === c) ||
-    (lastMove.to[0]   === r && lastMove.to[1]   === c));
-  const isChk   = (r, c) => {
+    (lastMove.to[0] === r && lastMove.to[1] === c));
+  const isChk = (r, c) => {
     if (status !== 'check' && status !== 'checkmate') return false;
     const k = findKing(board, turn);
     return k?.[0] === r && k?.[1] === c;
@@ -299,10 +299,10 @@ export default function ChessGame() {
 
   // ── Status badge config
   const si = ({
-    playing:   aiThinking
+    playing: aiThinking
       ? { text: '🤖 AI is thinking…', cls: 'thinking' }
       : { text: '♟ Your turn (White)', cls: 'your-turn' },
-    check:     { text: '⚠️ Check! Protect your king', cls: 'check' },
+    check: { text: '⚠️ Check! Protect your king', cls: 'check' },
     checkmate: turn === 'b'
       ? { text: '🏆 Checkmate — You win!', cls: 'win' }
       : { text: '💀 Checkmate — AI wins', cls: 'lose' },
@@ -314,7 +314,7 @@ export default function ChessGame() {
       {/* Header */}
       <div className="chess-header">
         <div>
-          <h2 className="chess-title">♟ Chess vs AI</h2>
+          <h2 className="chess-title">♟ Ucok's Mini Chess</h2>
           <p className="chess-sub">
             Turn-based · Full rules · Auto-queen promotion · Castling · En passant
           </p>
@@ -354,27 +354,27 @@ export default function ChessGame() {
           {/* The 8×8 board */}
           <div className="chess-board">
             {board.map((row, ri) => row.map((piece, ci) => {
-              const light  = (ri + ci) % 2 === 0;
-              const sel    = isSel(ri, ci);
-              const hl     = isHl(ri, ci);
-              const lm     = isLm(ri, ci);
-              const chk    = isChk(ri, ci);
-              const isCap  = hl && board[ri][ci] !== null;
+              const light = (ri + ci) % 2 === 0;
+              const sel = isSel(ri, ci);
+              const hl = isHl(ri, ci);
+              const lm = isLm(ri, ci);
+              const chk = isChk(ri, ci);
+              const isCap = hl && board[ri][ci] !== null;
 
               return (
                 <div
                   key={`${ri}-${ci}`}
                   className={[
                     'chess-sq',
-                    light  ? 'sq-l'   : 'sq-d',
-                    sel    ? 'sq-sel' : '',
-                    lm     ? 'sq-lm'  : '',
-                    chk    ? 'sq-chk' : '',
+                    light ? 'sq-l' : 'sq-d',
+                    sel ? 'sq-sel' : '',
+                    lm ? 'sq-lm' : '',
+                    chk ? 'sq-chk' : '',
                   ].filter(Boolean).join(' ')}
                   onClick={() => handleClick(ri, ci)}
                 >
                   {hl && !isCap && <span className="move-dot" />}
-                  {isCap         && <span className="cap-ring" />}
+                  {isCap && <span className="cap-ring" />}
                   {piece && (
                     <span
                       className={[

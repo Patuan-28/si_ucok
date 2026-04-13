@@ -89,10 +89,10 @@ export default function Home() {
             Hubungi kami untuk kolaborasi, saran, atau pertanyaan seputar konten kami.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-            <a href="mailto:admin@siucok.com" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 600, fontSize: '1.2rem' }}>
-              📧 admin@siucok.com
+            <a href="mailto:patuangarcia@gmail.com" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 600, fontSize: '1.2rem' }}>
+              📧 patuangarcia@gmail.com
             </a>
-            <p style={{ margin: 0 }}>📍 Medan, Indonesia</p>
+            <p style={{ margin: 0 }}>📍 Bekasi, Indonesia</p>
           </div>
         </div>
       </section>
