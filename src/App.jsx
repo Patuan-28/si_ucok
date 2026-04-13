@@ -22,7 +22,7 @@ function App() {
         </div>
 
         <Footer />
-        <EmojiPicker />
+        {/* <EmojiPicker /> */}
       </div>
     </Router>
   );
