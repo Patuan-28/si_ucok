@@ -50,35 +50,50 @@ export default function Home() {
           Hello, I am Ucok. Welcome to my personal space.
         </p>
         <div className="hero-buttons">
-          <button className="btn btn-primary" onClick={() => alert("Contact feature coming soon!")}>
+          <a href="#contact" className="btn btn-primary">
             Get in Touch
-          </button>
+          </a>
           <a href="#projects" className="btn btn-outline">
-            View My Work
+            Explore Features
           </a>
         </div>
       </section>
 
       <section id="projects" className="projects-section">
-        <h2 className="section-title">Explore My Playground</h2>
-        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))' }}>
+        <h2 className="section-title">My Portfolio Showcase</h2>
+        <div className="grid">
 
           <Link to="/frontend" className="card" style={{ textDecoration: 'none' }}>
             <div className="card-icon">🎨</div>
             <h3 className="card-title">Frontend UI Components</h3>
             <p className="card-desc">
-              A collection of unique, interactive interfaces, animations, and sleek design elements.
+              Koleksi elemen antarmuka unik, animasi, dan desain sleek.
             </p>
           </Link>
 
           <Link to="/backend" className="card" style={{ textDecoration: 'none' }}>
             <div className="card-icon">⚙️</div>
-            <h3 className="card-title">Backend Logic & Games</h3>
+            <h3 className="card-title">Backend Logic Showcase</h3>
             <p className="card-desc">
-              Lightweight tools, calculation functions, and interactive mini-games built with logic.
+              Demonstrasi algoritma, utilitas data, dan logika cerdas.
             </p>
           </Link>
 
+        </div>
+      </section>
+
+      <section id="contact" className="projects-section" style={{ paddingBottom: '100px' }}>
+        <h2 className="section-title">Contact Us</h2>
+        <div className="card" style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
+            Hubungi kami untuk kolaborasi, saran, atau pertanyaan seputar konten kami.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+            <a href="mailto:admin@siucok.com" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 600, fontSize: '1.2rem' }}>
+              📧 admin@siucok.com
+            </a>
+            <p style={{ margin: 0 }}>📍 Medan, Indonesia</p>
+          </div>
         </div>
       </section>
     </main>

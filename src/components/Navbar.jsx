@@ -24,14 +24,12 @@ export default function Navbar() {
           {dropdownOpen && (
             <div className="dropdown-menu fade-in">
               <Link to="/frontend" className="dropdown-item">🎨 Frontend UI</Link>
-              <Link to="/backend" className="dropdown-item">⚙️ Backend Logic</Link>
+              <Link to="/backend" className="dropdown-item">⚙️ Interactive</Link>
             </div>
           )}
         </div>
 
-        <a href="#contact" className="nav-link" onClick={() => alert("Contact coming soon!")}>Contact</a>
-        <Link to="/game" className="nav-link">Game Guides</Link>
-        <Link to="/topups" className="nav-link">Top Up Store</Link>
+        <a href="#contact" className="nav-link">Contact</a>
         <ThemeToggle />
       </div>
     </nav>

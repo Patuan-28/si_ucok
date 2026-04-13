@@ -1,53 +1,61 @@
-import React, { useState } from 'react';
-import ShadowRotate from '../components/ShadowRotate';
+import React from 'react';
+
+const FRONTEND_PROJECTS = [
+  {
+    id: 1,
+    title: 'Glassmorphism Sidebar',
+    description: 'A modern, translucent sidebar with frosted glass effects and smooth hover states.',
+    icon: '🏢',
+    tech: ['React', 'CSS Variables', 'Glassmorphism']
+  },
+  {
+    id: 2,
+    title: 'Neumorphic Buttons',
+    description: 'Interactive buttons with realistic shadow effects that mimic physical push actions.',
+    icon: '🔘',
+    tech: ['CSS Shadows', 'Micro-interactions']
+  },
+  {
+    id: 3,
+    title: 'Anime.js Hero Reveal',
+    description: 'A sophisticated landing page entrance with staggered text and element animations.',
+    icon: '✨',
+    tech: ['Anime.js', 'Web Animations API']
+  },
+  {
+    id: 4,
+    title: 'Dynamic Theme Toggle',
+    description: 'A smooth transition system between light and dark modes with color interpolation.',
+    icon: '🌗',
+    tech: ['React Context', 'Local Storage']
+  }
+];
 
 export default function FrontendProjects() {
-  const [btnText, setBtnText] = useState("Click Me!");
-
   return (
     <main className="container fade-in" style={{ paddingTop: '100px', minHeight: '80vh' }}>
-      <h1 className="section-title">✨ Frontend UI Playground</h1>
-      <p className="hero-subtitle" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        Koleksi komponen antarmuka yang unik, tombol interaktif, dan animasi ringan (mini-projects).
-      </p>
+      <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <h1 className="section-title">🎨 Frontend UI Showcase</h1>
+        <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
+          Eksplorasi desain antarmuka modern, animasi halus, dan komponen UI yang interaktif.
+        </p>
+      </div>
 
       <div className="grid">
-        {/* Project 1: Magic Button */}
-        <div className="card">
-          <h3 className="card-title">Magic Button</h3>
-          <p className="card-desc" style={{ marginBottom: '1.5rem' }}>
-            Tombol yang berubah wujud saat ditekan dengan efek transisi halus.
-          </p>
-          <button 
-            className="btn btn-primary"
-            style={{ width: '100%', transition: 'all 0.3s ease' }}
-            onClick={() => setBtnText(btnText === "Click Me!" ? "✨ Magic! ✨" : "Click Me!")}
-          >
-            {btnText}
-          </button>
-        </div>
-
-        {/* Project 2: Glassmorphism */}
-        <div className="card" style={{ 
-          background: 'rgba(255, 255, 255, 0.4)', 
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.8)'
-        }}>
-          <h3 className="card-title">Glass Card</h3>
-          <p className="card-desc">
-            Efek visual kaca blur tren web design 2024. Ideal dipadukan dengan background warna warni.
-          </p>
-        </div>
-
-        {/* Project 3: Shadow Rotate */}
-        <div className="card" style={{ gridColumn: '1 / -1' }}>
-          <h3 className="card-title">Shadow Rotation Sync</h3>
-          <p className="card-desc" style={{ marginBottom: '1.5rem' }}>
-            Komponen interaktif di mana rotasi gambar sinkron secara matematis dengan pergeseran drop-shadow menggunakan fungsi trigonometri CSS `cos()` dan `sin()`.
-          </p>
-          <ShadowRotate />
-        </div>
-
+        {FRONTEND_PROJECTS.map(project => (
+          <div key={project.id} className="card" style={{ transition: 'transform 0.3s ease' }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>{project.icon}</div>
+            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+              {project.tech.map(t => (
+                <span key={t} style={{ fontSize: '0.7rem', padding: '2px 10px', background: 'var(--primary)', color: 'white', borderRadius: '10px' }}>
+                  {t}
+                </span>
+              ))}
+            </div>
+            <h3 className="card-title">{project.title}</h3>
+            <p className="card-desc">{project.description}</p>
+          </div>
+        ))}
       </div>
     </main>
   );
