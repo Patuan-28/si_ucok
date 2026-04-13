@@ -1,80 +1,51 @@
 /* ─── CSS Variables ─────────────────────────────────────────────── */
 :root {
-  --battle-hp-green: #22c55e;
+  --battle-hp-green:  #22c55e;
   --battle-hp-yellow: #eab308;
-  --battle-hp-red: #ef4444;
-  --battle-surface: var(--surface);
-  --battle-border: var(--border);
+  --battle-hp-red:    #ef4444;
 }
 
-/* ─── Shake Keyframe ────────────────────────────────────────────── */
+/* ─── Keyframes ─────────────────────────────────────────────────── */
 @keyframes shake {
-
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  15% {
-    transform: translateX(-8px) rotate(-2deg);
-  }
-
-  30% {
-    transform: translateX(8px) rotate(2deg);
-  }
-
-  45% {
-    transform: translateX(-6px);
-  }
-
-  60% {
-    transform: translateX(6px);
-  }
-
-  75% {
-    transform: translateX(-3px);
-  }
-
-  90% {
-    transform: translateX(3px);
-  }
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-8px) rotate(-2deg); }
+  30%       { transform: translateX(8px) rotate(2deg); }
+  45%       { transform: translateX(-6px); }
+  60%       { transform: translateX(6px); }
+  75%       { transform: translateX(-3px); }
+  90%       { transform: translateX(3px); }
 }
 
-/* ─── Float-up damage text ──────────────────────────────────────── */
 @keyframes floatUp {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  60% {
-    opacity: 1;
-    transform: translateY(-32px) scale(1.2);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-56px) scale(0.9);
-  }
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  60%  { opacity: 1; transform: translateY(-32px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-56px) scale(0.9); }
 }
 
-/* ─── Log entry slide in ────────────────────────────────────────── */
 @keyframes slideInLog {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
 
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes burnPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  50%       { box-shadow: 0 0 12px 4px rgba(239, 68, 68, 0.35); }
+}
+
+@keyframes cdBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
 }
 
 /* ─── Wrapper ───────────────────────────────────────────────────── */
 .battle-wrapper {
-  background: var(--battle-surface);
-  border: 1px solid var(--battle-border);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 2rem;
   display: flex;
@@ -84,7 +55,6 @@
   overflow: hidden;
 }
 
-/* subtle glow overlay */
 .battle-wrapper::before {
   content: '';
   position: absolute;
@@ -130,6 +100,30 @@
   filter: grayscale(0.7);
 }
 
+/* ─── Personality Row ───────────────────────────────────────────── */
+.personality-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.personality-chip {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: 99px;
+  background: rgba(99, 102, 241, 0.12);
+  color: #6366f1;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+.personality-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
 /* ─── Arena ─────────────────────────────────────────────────────── */
 .battle-arena {
   display: grid;
@@ -139,9 +133,9 @@
   padding: 1.5rem;
   background: var(--bg);
   border-radius: 14px;
-  border: 1px solid var(--battle-border);
+  border: 1px solid var(--border);
   position: relative;
-  min-height: 140px;
+  min-height: 160px;
 }
 
 .battle-vs {
@@ -152,21 +146,15 @@
   opacity: 0.5;
 }
 
-/* ─── Fighter card ──────────────────────────────────────────────── */
+/* ─── Fighter ───────────────────────────────────────────────────── */
 .battle-fighter {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
-.battle-fighter--left {
-  align-items: flex-start;
-}
-
-.battle-fighter--right {
-  align-items: flex-end;
-  text-align: right;
-}
+.battle-fighter--left  { align-items: flex-start; }
+.battle-fighter--right { align-items: flex-end; text-align: right; }
 
 .battle-fighter.shake {
   animation: shake 0.5s ease;
@@ -212,7 +200,43 @@
   transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s;
 }
 
-/* ─── Floating damage text ──────────────────────────────────────── */
+/* ─── Status Effect Badges ──────────────────────────────────────── */
+.status-badges {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  min-height: 22px;
+}
+
+.sbadge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 99px;
+  letter-spacing: 0.2px;
+  animation: fadeIn 0.3s ease;
+}
+
+.sbadge--burn {
+  background: rgba(239, 68, 68, 0.15);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  animation: burnPulse 1.2s ease infinite, fadeIn 0.3s ease;
+}
+
+.sbadge--freeze {
+  background: rgba(96, 165, 250, 0.15);
+  color: #3b82f6;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+.sbadge--shield {
+  background: rgba(99, 102, 241, 0.12);
+  color: #6366f1;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+/* ─── Floating Damage Text ──────────────────────────────────────── */
 .floating-dmg {
   position: absolute;
   top: 20px;
@@ -224,20 +248,8 @@
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.floating-dmg--enemy {
-  right: 2rem;
-  color: #ef4444;
-}
-
-.floating-dmg--player {
-  left: 2rem;
-  color: #ef4444;
-}
-
-/* positive heal float */
-.floating-dmg--player[data-type="heal"] {
-  color: #22c55e;
-}
+.floating-dmg--enemy { right: 2rem; color: #ef4444; }
+.floating-dmg--player { left: 2rem; color: #ef4444; }
 
 /* ─── Turn Indicator ────────────────────────────────────────────── */
 .turn-indicator {
@@ -264,58 +276,113 @@
   border-color: rgba(239, 68, 68, 0.25);
 }
 
-/* ─── Action Buttons ────────────────────────────────────────────── */
-.battle-actions {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
+/* ─── Skill Buttons Grid ────────────────────────────────────────── */
+.battle-skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.6rem;
 }
 
 .battle-btn {
-  padding: 0.65rem 1.6rem;
+  padding: 0.55rem 0.9rem;
   border-radius: 10px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
   font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .battle-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.38;
   cursor: not-allowed;
   transform: none !important;
+  box-shadow: none !important;
 }
 
+.skill-label { pointer-events: none; }
+
+.skill-cd {
+  font-size: 0.68rem;
+  font-weight: 700;
+  opacity: 0.85;
+  pointer-events: none;
+  animation: cdBlink 1s ease infinite;
+}
+
+.battle-btn.on-cooldown {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Primary / Attack */
 .battle-btn--primary {
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: #fff;
   box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
 }
-
-.battle-btn--primary:hover:not(:disabled) {
+.battle-btn--primary:hover:not(:disabled):not(.on-cooldown) {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
 }
 
+/* Slash */
+.battle-btn--slash {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+.battle-btn--slash:hover:not(:disabled):not(.on-cooldown) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+}
+
+/* Burn */
+.battle-btn--burn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+}
+.battle-btn--burn:hover:not(:disabled):not(.on-cooldown) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
+}
+
+/* Heal */
 .battle-btn--heal {
   background: linear-gradient(135deg, #10b981, #059669);
   color: #fff;
   box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
 }
-
-.battle-btn--heal:hover:not(:disabled) {
+.battle-btn--heal:hover:not(:disabled):not(.on-cooldown) {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
 }
 
+/* Shield */
+.battle-btn--shield {
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(67, 56, 202, 0.35);
+}
+.battle-btn--shield:hover:not(:disabled):not(.on-cooldown) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(67, 56, 202, 0.5);
+}
+
+/* Outline (restart/next) */
 .battle-btn--outline {
   background: transparent;
   color: var(--text-dark);
   border: 1px solid var(--border);
 }
-
 .battle-btn--outline:hover:not(:disabled) {
   background: var(--bg);
   border-color: var(--text-muted);
@@ -358,26 +425,17 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1rem;
-  max-height: 160px;
+  max-height: 190px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.3rem;
   scroll-behavior: smooth;
 }
 
-.battle-log::-webkit-scrollbar {
-  width: 4px;
-}
-
-.battle-log::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.battle-log::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 99px;
-}
+.battle-log::-webkit-scrollbar       { width: 4px; }
+.battle-log::-webkit-scrollbar-track { background: transparent; }
+.battle-log::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
 
 .log-header {
   font-size: 0.72rem;
@@ -387,7 +445,7 @@
   color: var(--text-muted);
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .log-entry {
@@ -398,37 +456,17 @@
   line-height: 1.4;
 }
 
-.log-player {
-  color: #6366f1;
-  background: rgba(99, 102, 241, 0.07);
-}
+.log-player  { color: #6366f1; background: rgba(99, 102, 241, 0.07); }
+.log-enemy   { color: #ef4444; background: rgba(239, 68, 68, 0.07); }
+.log-crit    { color: #f59e0b; background: rgba(245, 158, 11, 0.1); font-weight: 700; }
+.log-miss    { color: var(--text-muted); background: transparent; font-style: italic; }
+.log-system  { color: var(--text-dark); background: rgba(0, 0, 0, 0.04); font-weight: 600; }
+.log-burn    { color: #dc2626; background: rgba(239, 68, 68, 0.08); }
+.log-freeze  { color: #3b82f6; background: rgba(59, 130, 246, 0.08); }
+.log-shield  { color: #6366f1; background: rgba(99, 102, 241, 0.08); }
+.log-heal    { color: #10b981; background: rgba(16, 185, 129, 0.08); }
 
-.log-enemy {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.07);
-}
-
-.log-crit {
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.1);
-  font-weight: 700;
-}
-
-.log-miss {
-  color: var(--text-muted);
-  background: transparent;
-  font-style: italic;
-}
-
-.log-system {
-  color: var(--text-dark);
-  background: rgba(0, 0, 0, 0.04);
-  font-weight: 600;
-}
-
-html.dark .log-system {
-  background: rgba(255, 255, 255, 0.04);
-}
+html.dark .log-system { background: rgba(255, 255, 255, 0.04); }
 
 /* ─── Stats Row ─────────────────────────────────────────────────── */
 .battle-stats-row {
@@ -449,9 +487,8 @@ html.dark .log-system {
 }
 
 /* ─── Responsive ────────────────────────────────────────────────── */
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .battle-arena {
-    grid-template-columns: 1fr auto 1fr;
     gap: 0.75rem;
     padding: 1rem;
   }
@@ -460,8 +497,12 @@ html.dark .log-system {
     font-size: 2.5rem;
   }
 
+  .battle-skills {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .battle-btn {
-    padding: 0.6rem 1.1rem;
-    font-size: 0.82rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 0.75rem;
   }
 }

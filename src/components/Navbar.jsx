@@ -29,7 +29,7 @@ export default function Navbar() {
           )}
         </div>
 
-        <a href="#contact" className="nav-link">Contact</a>
+        <a href="/#contact" className="nav-link">Contact</a>
         <ThemeToggle />
       </div>
     </nav>
