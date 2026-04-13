@@ -6,7 +6,7 @@ const PLAYER_STATS = {
   name: 'Hero',
   emoji: '🧙‍♂️',
   maxHp: 130,
-  attack: 20,
+  attack: 24,
   defense: 5,
   critChance: 0.2,
   missChance: 0.1,
@@ -119,7 +119,7 @@ function calcDamage(attacker, defender, multiplier = 1, shielded = false) {
 
 // AI decides enemy action based on personality + HP context
 function enemyDecide(enemy, enemyHp, playerHp) {
-  const enemyHpPct  = enemyHp / enemy.maxHp;
+  const enemyHpPct = enemyHp / enemy.maxHp;
   const playerHpPct = playerHp / PLAYER_STATS.maxHp;
 
   // Universal survival logic: if very low hp, try to heal
@@ -134,7 +134,7 @@ function enemyDecide(enemy, enemyHp, playerHp) {
 
     case 'defensive': {
       const roll = Math.random();
-      if (roll < 0.3)  return 'shield';
+      if (roll < 0.3) return 'shield';
       if (roll < 0.55) return 'basic';
       return 'slash';
     }
@@ -155,8 +155,8 @@ function HpBar({ current, max }) {
   const pct = Math.max(0, Math.min(100, (current / max) * 100));
   const color =
     pct > 60 ? 'var(--battle-hp-green)' :
-    pct > 30 ? 'var(--battle-hp-yellow)' :
-               'var(--battle-hp-red)';
+      pct > 30 ? 'var(--battle-hp-yellow)' :
+        'var(--battle-hp-red)';
   return (
     <div className="battle-hp-track">
       <div className="battle-hp-fill" style={{ width: `${pct}%`, background: color }} />
@@ -168,7 +168,7 @@ function HpBar({ current, max }) {
 function StatusBadges({ effects }) {
   return (
     <div className="status-badges">
-      {effects.burn  > 0 && <span className="sbadge sbadge--burn">🔥 Burn ×{effects.burn}</span>}
+      {effects.burn > 0 && <span className="sbadge sbadge--burn">🔥 Burn ×{effects.burn}</span>}
       {effects.freeze > 0 && <span className="sbadge sbadge--freeze">❄️ Frozen</span>}
       {effects.shield > 0 && <span className="sbadge sbadge--shield">🛡️ Shield ×{effects.shield}</span>}
     </div>
@@ -191,14 +191,14 @@ function Fighter({ stats, currentHp, shaking, side, effects }) {
 
 function LogEntry({ entry }) {
   const typeMap = {
-    crit:   'log-crit',
-    miss:   'log-miss',
-    enemy:  'log-enemy',
+    crit: 'log-crit',
+    miss: 'log-miss',
+    enemy: 'log-enemy',
     system: 'log-system',
-    burn:   'log-burn',
+    burn: 'log-burn',
     freeze: 'log-freeze',
     shield: 'log-shield',
-    heal:   'log-heal',
+    heal: 'log-heal',
   };
   return (
     <div className={`log-entry ${typeMap[entry.type] || 'log-player'}`}>
@@ -211,10 +211,10 @@ function LogEntry({ entry }) {
 function SkillBtn({ skill, onUse, disabled, cdLeft }) {
   const colorMap = {
     primary: 'battle-btn--primary',
-    slash:   'battle-btn--slash',
-    burn:    'battle-btn--burn',
-    heal:    'battle-btn--heal',
-    shield:  'battle-btn--shield',
+    slash: 'battle-btn--slash',
+    burn: 'battle-btn--burn',
+    heal: 'battle-btn--heal',
+    shield: 'battle-btn--shield',
   };
   return (
     <button
@@ -235,26 +235,26 @@ const NO_EFFECTS = { burn: 0, freeze: 0, shield: 0 };
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function BattleGame() {
   const [enemyIndex, setEnemyIndex] = useState(0);
-  const [playerHp, setPlayerHp]     = useState(PLAYER_STATS.maxHp);
-  const [enemyHp, setEnemyHp]       = useState(ENEMIES[0].maxHp);
+  const [playerHp, setPlayerHp] = useState(PLAYER_STATS.maxHp);
+  const [enemyHp, setEnemyHp] = useState(ENEMIES[0].maxHp);
 
   // Status effects: { burn, freeze, shield } — each is a turn counter
   const [playerFx, setPlayerFx] = useState({ ...NO_EFFECTS });
-  const [enemyFx,  setEnemyFx]  = useState({ ...NO_EFFECTS });
+  const [enemyFx, setEnemyFx] = useState({ ...NO_EFFECTS });
 
   // Skill cooldowns: { skillId: turnsLeft }
   const [cooldowns, setCooldowns] = useState({});
 
-  const [log, setLog]               = useState([{ text: '⚔️ Battle started! Your move, Hero.', type: 'system' }]);
+  const [log, setLog] = useState([{ text: '⚔️ Battle started! Your move, Hero.', type: 'system' }]);
   const [playerTurn, setPlayerTurn] = useState(true);
-  const [gameOver, setGameOver]     = useState(null);
+  const [gameOver, setGameOver] = useState(null);
   const [playerShake, setPlayerShake] = useState(false);
-  const [enemyShake, setEnemyShake]   = useState(false);
+  const [enemyShake, setEnemyShake] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [floatingText, setFloatingText] = useState(null);
 
   const logRef = useRef(null);
-  const enemy  = ENEMIES[enemyIndex];
+  const enemy = ENEMIES[enemyIndex];
 
   // Auto-scroll log
   useEffect(() => {
@@ -313,9 +313,9 @@ export default function BattleGame() {
 
     const action = enemyDecide(enemy, currentEnemyHp, currentPlayerHp);
     let newPlayerHp = currentPlayerHp;
-    let newEnemyHp  = currentEnemyHp;
+    let newEnemyHp = currentEnemyHp;
     let newPlayerFx = { ...currentPlayerFx };
-    let newEnemyFx  = { ...currentEnemyFx };
+    let newEnemyFx = { ...currentEnemyFx };
 
     switch (action) {
       case 'basic':
@@ -389,9 +389,9 @@ export default function BattleGame() {
       setCooldowns(prev => ({ ...prev, [skill.id]: skill.cooldown }));
     }
 
-    let newEnemyHp  = enemyHp;
+    let newEnemyHp = enemyHp;
     let newPlayerHp = playerHp;
-    let newEnemyFx  = { ...enemyFx };
+    let newEnemyFx = { ...enemyFx };
     let newPlayerFx = { ...playerFx };
 
     // ── Player action ──
@@ -455,9 +455,9 @@ export default function BattleGame() {
     // ── Tick effects at start of enemy turn & then enemy acts ──
     setTimeout(() => {
       let postPlayerHp = newPlayerHp;
-      let postEnemyHp  = newEnemyHp;
+      let postEnemyHp = newEnemyHp;
       let postPlayerFx = { ...newPlayerFx };
-      let postEnemyFx  = { ...newEnemyFx };
+      let postEnemyFx = { ...newEnemyFx };
 
       // Tick player burn
       const pTick = tickEffects(postPlayerFx, postPlayerHp, PLAYER_STATS);
@@ -524,8 +524,8 @@ export default function BattleGame() {
   // ── Personality label ──────────────────────────────────────────────────────
   const personalityLabel = {
     aggressive: '⚔️ Aggressive',
-    defensive:  '🛡️ Defensive',
-    trickster:  '🎲 Trickster',
+    defensive: '🛡️ Defensive',
+    trickster: '🎲 Trickster',
   }[enemy.personality];
 
   // ─── Render ────────────────────────────────────────────────────────────────
@@ -551,8 +551,8 @@ export default function BattleGame() {
         <span className="personality-chip">{personalityLabel}</span>
         <span className="personality-desc">
           {enemy.personality === 'aggressive' && 'Selalu menyerang. Waspada!'}
-          {enemy.personality === 'defensive'  && 'Sering pasang shield. Sabar & tekan terus.'}
-          {enemy.personality === 'trickster'  && 'Skill acak. Tidak bisa diprediksi!'}
+          {enemy.personality === 'defensive' && 'Sering pasang shield. Sabar & tekan terus.'}
+          {enemy.personality === 'trickster' && 'Skill acak. Tidak bisa diprediksi!'}
         </span>
       </div>
 
