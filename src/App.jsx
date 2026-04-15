@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import EmojiPicker from './components/EmojiPicker';
@@ -22,6 +23,7 @@ function App() {
         </div>
 
         <Footer />
+        <SpeedInsights />
         {/* <EmojiPicker /> */}
       </div>
     </Router>
