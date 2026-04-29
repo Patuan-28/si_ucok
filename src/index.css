@@ -314,10 +314,10 @@ a {
 /* Footer */
 .footer {
   text-align: center;
-  padding: 3rem 0;
+  padding: 1.5rem 0;
   color: var(--text-muted);
   border-top: 1px solid var(--border);
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 /* Responsive */
@@ -325,4 +325,335 @@ a {
   .hero-title {
     font-size: 3rem;
   }
+}
+
+/* ─── AURA SYSTEM ─────────────────────────────── */
+:root {
+  --aura-color: rgba(124, 58, 237, 0.60);
+  --aura-size: 70px;
+  --aura-hex: #7c3aed;
+}
+
+#aura-wrapper {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.aura-edge {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aura-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--aura-size);
+  background: linear-gradient(to bottom, var(--aura-color), transparent);
+}
+
+.aura-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--aura-size);
+  background: linear-gradient(to top, var(--aura-color), transparent);
+}
+
+.aura-left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--aura-size);
+  background: linear-gradient(to right, var(--aura-color), transparent);
+}
+
+.aura-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--aura-size);
+  background: linear-gradient(to left, var(--aura-color), transparent);
+}
+
+.aura-ring {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  box-shadow:
+    inset 0 0 80px var(--aura-color),
+    inset 0 0 40px var(--aura-color),
+    inset 0 0 15px var(--aura-color);
+}
+
+.aura-scan {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.012) 3px,
+      rgba(255, 255, 255, 0.012) 4px);
+  transition: opacity 0.7s ease;
+}
+
+.corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  transition: opacity 0.5s ease, width 0.5s ease, height 0.5s ease;
+}
+
+.corner-tl {
+  top: 0;
+  left: 0;
+  border-top: 2px solid var(--aura-hex);
+  border-left: 2px solid var(--aura-hex);
+}
+
+.corner-tr {
+  top: 0;
+  right: 0;
+  border-top: 2px solid var(--aura-hex);
+  border-right: 2px solid var(--aura-hex);
+}
+
+.corner-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom: 2px solid var(--aura-hex);
+  border-left: 2px solid var(--aura-hex);
+}
+
+.corner-br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid var(--aura-hex);
+  border-right: 2px solid var(--aura-hex);
+}
+
+.aura-active .aura-edge {
+  opacity: 1;
+}
+
+.aura-active .aura-ring {
+  opacity: 0.9;
+}
+
+.aura-active .aura-scan {
+  opacity: 1;
+}
+
+.aura-active .corner {
+  opacity: 1;
+  width: 60px;
+  height: 60px;
+}
+
+/* ─── PARTICLES ───────────────────────────────── */
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--aura-hex);
+  box-shadow: 0 0 6px var(--aura-hex);
+  opacity: 0;
+  filter: blur(1px);
+}
+
+.aura-active .particle {
+  animation: particleFloat var(--dur, 2s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.3);
+  }
+
+  20% {
+    opacity: 0.9;
+  }
+
+  80% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-180px) scale(0.1) rotate(180deg);
+  }
+}
+
+/* Stuffs Card with dynamic background and hover overlay */
+.stuff-card {
+  position: relative;
+  overflow: hidden;
+  color: #f8fafc;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid var(--border);
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+
+.stuff-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.75);
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.stuff-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  border-color: var(--aura-hex);
+  box-shadow:
+    0 0 30px var(--aura-color),
+    0 0 60px var(--aura-color),
+    0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.stuff-card:hover::before {
+  opacity: 0.2;
+}
+
+.stuff-card-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.stuff-card-content h3,
+.stuff-card-content p {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.stuff-card:hover .stuff-card-content h3,
+.stuff-card:hover .stuff-card-content p {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.card-power-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  opacity: 0;
+  transition: opacity 0.3s ease, border-color 0.4s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stuff-card:hover .card-power-ring {
+  opacity: 1;
+  border-color: var(--aura-hex);
+  box-shadow: 0 0 20px var(--aura-hex);
+  animation: pulse-ring 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.4;
+  }
+}
+
+.card-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.card-icon {
+  display: block;
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter 0.4s ease, transform 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.stuff-card:hover .card-icon {
+  filter: drop-shadow(0 0 12px var(--aura-hex));
+  transform: scale(1.1);
+}
+
+.card-power-bar {
+  margin: 14px auto 0;
+  height: 4px;
+  width: 60%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  transition: height 0.3s ease, width 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stuff-card:hover .card-power-bar {
+  height: 10px;
+  width: 75%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.card-power-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--aura-hex);
+  width: 0%;
+  transition: width 0.5s ease, background 0.4s, box-shadow 0.4s;
+}
+
+.stuff-card:hover .card-power-fill {
+  box-shadow: 0 0 10px var(--aura-hex);
+}
+
+.card-stat {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+  transition: color 0.4s, text-shadow 0.4s, font-weight 0.4s;
+  text-transform: uppercase;
+}
+
+.stuff-card:hover .card-stat {
+  color: var(--aura-hex);
+  font-weight: 800;
+  text-shadow: 0 0 15px var(--aura-hex);
 }

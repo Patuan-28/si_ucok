@@ -171,7 +171,6 @@ function updateCastling(castling, move, board) {
   return nc;
 }
 
-// ─── Simple AI (random + prefers captures, center, checks) ───────────────────
 function getAIMove(board, ep, castling) {
   const moves = allLegal(board, 'b', ep, castling);
   if (!moves.length) return null;
@@ -188,7 +187,6 @@ function getAIMove(board, ep, castling) {
   return scored[0].m;
 }
 
-// ─── React Component ──────────────────────────────────────────────────────────
 export default function ChessGame() {
   const [board, setBoard] = useState(initialBoard);
   const [selected, setSelected] = useState(null);

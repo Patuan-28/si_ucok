@@ -14,22 +14,9 @@ export default function Navbar() {
       <div className="nav-links">
         <Link to="/" className="nav-link">Home</Link>
 
-        <div
-          className="nav-dropdown"
-          onMouseEnter={() => setDropdownOpen(true)}
-          onMouseLeave={() => setDropdownOpen(false)}
-        >
-          <span className="nav-link" style={{ cursor: 'pointer' }}>Portfolio ▾</span>
+        <Link to="/stuffs" className="nav-link">Stuffs</Link>
 
-          {dropdownOpen && (
-            <div className="dropdown-menu fade-in">
-              <Link to="/frontend" className="dropdown-item">🎨 Frontend UI</Link>
-              <Link to="/backend" className="dropdown-item">⚙️ Interactive</Link>
-            </div>
-          )}
-        </div>
-
-        <a href="/#contact" className="nav-link">Contact</a>
+        <Link to="/contact" className="nav-link">Contact</Link>
         <ThemeToggle />
       </div>
     </nav>
