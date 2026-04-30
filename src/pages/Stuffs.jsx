@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import bgBattle from '../assets/pve.png';
 import bgChess from '../assets/chess.png';
 import bgPrime from '../assets/prime.png';
+import bgLock from '../assets/lockpick.png';
 
 export default function Stuffs() {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -38,7 +39,7 @@ export default function Stuffs() {
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h1 className="section-title">⚙️ Interactive Logics</h1>
           <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
-            Demonstrasi logika algoritma, kalkulasi sisi klien, dan utilitas cerdas tanpa server.
+            Algorithm Logics and Smart Utility without Server.
           </p>
         </div>
 
@@ -57,7 +58,7 @@ export default function Stuffs() {
                 <div className="icon" style={{ fontSize: '3rem' }}>⎝ 𓆩༺ ⚔ ༻𓆪 ⎠</div>
               </div>
               <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>PVE Battle Minigame</h3>
-              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Game pertarungan turn-based melawan AI dengan efek animasi.</p>
+              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>PVE Battle Minigame with animations.</p>
 
               <div className="card-power-bar">
                 <div className="card-power-fill" style={{ width: hoveredCard === 'battle' ? '97%' : '0%' }}></div>
@@ -80,7 +81,7 @@ export default function Stuffs() {
                 <div className="icon" style={{ fontSize: '3rem' }}>⎝ 𓆩༺ ♔♕♖♗♘♙ ༻𓆪 ⎠</div>
               </div>
               <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>Chess Game</h3>
-              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Bermain catur dengan aturan lengkap melawan AI.</p>
+              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Chess game with AI.</p>
 
               <div className="card-power-bar">
                 <div className="card-power-fill" style={{ width: hoveredCard === 'chess' ? '95%' : '0%' }}></div>
@@ -103,12 +104,35 @@ export default function Stuffs() {
                 <div className="icon" style={{ fontSize: '3rem' }}>⎝ 𓆩༺ 𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡𝟘 ༻𓆪 ⎠</div>
               </div>
               <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>Prime Number Checker</h3>
-              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Algoritma pengecekan bilangan prima yang efisien dijalankan di browser.</p>
+              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Efficient Prime Number Checker running in browser</p>
 
               <div className="card-power-bar">
                 <div className="card-power-fill" style={{ width: hoveredCard === 'prime' ? '88%' : '0%' }}></div>
               </div>
               <div className="card-stat">EXCITEMENT · 88%</div>
+            </div>
+          </Link>
+
+          {/* Lock Picking Minigame */}
+          <Link
+            to="/stuffs/lock-picking"
+            className="card stuff-card"
+            style={{ '--bg-image': `url(${bgLock})` }}
+            onMouseEnter={() => setHoveredCard('lockpick')}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+            <div className="stuff-card-content">
+              <div className="card-icon-wrapper">
+                <div className="card-power-ring"></div>
+                <div className="icon" style={{ fontSize: '3rem' }}>⎝ 𓆩༺ 🔓 ༻𓆪 ⎠</div>
+              </div>
+              <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>Lock Picking</h3>
+              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Lock Picker Minigame — click when pointer hits the green zone.</p>
+
+              <div className="card-power-bar">
+                <div className="card-power-fill" style={{ width: hoveredCard === 'lockpick' ? '92%' : '0%' }}></div>
+              </div>
+              <div className="card-stat">EXCITEMENT · 92%</div>
             </div>
           </Link>
         </div>

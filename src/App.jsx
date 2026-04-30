@@ -9,6 +9,7 @@ import BattleGamePage from './pages/BattleGamePage';
 import ChessGamePage from './pages/ChessGamePage';
 import PrimeCheckerPage from './pages/PrimeCheckerPage';
 import Contact from './pages/Contact';
+import LockPickingPage from './pages/LockPickingPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/stuffs/battle" element={<BattleGamePage />} />
             <Route path="/stuffs/chess" element={<ChessGamePage />} />
             <Route path="/stuffs/prime-checker" element={<PrimeCheckerPage />} />
+            <Route path="/stuffs/lock-picking" element={<LockPickingPage />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>

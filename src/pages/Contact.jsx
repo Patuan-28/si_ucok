@@ -16,11 +16,11 @@ const socialIcons = [
   { name: 'GitHub', link: 'https://github.com/Patuan-28', img: iconGithub },
   { name: 'CodeWars', link: 'https://www.codewars.com/users/Patuan-28', img: iconCodewars },
   { name: 'Instagram', link: 'https://www.instagram.com/patuangs/', img: iconInstagram },
-  { name: 'LinkedIn', link: 'https://www.linkedin.com/in/patuan-situmorang-5848a6274/', img: iconLinkedin },
+  // { name: 'LinkedIn', link: 'https://www.linkedin.com/in/patuan-situmorang-5848a6274/', img: iconLinkedin },
   { name: 'Steam', link: 'https://steamcommunity.com/', img: iconSteam },
   { name: 'Epic Games', link: 'https://store.epicgames.com/', img: iconEpicgames },
   { name: 'Roblox', link: 'https://www.roblox.com/', img: iconRoblox },
-  { name: 'Spotify', link: 'https://open.spotify.com/', img: iconSpotify },
+  { name: 'Spotify', link: 'https://open.spotify.com/user/217fmp2sareo6bnyi2nq43h4q?si=439b4fc8ed8d40b2', img: iconSpotify },
   { name: 'YouTube', link: 'https://www.youtube.com/', img: iconYoutube },
   { name: 'Xbox', link: 'https://www.xbox.com/', img: iconXbox },
   { name: 'Battle.net', link: 'https://battle.net/', img: iconBattlenet }
@@ -145,19 +145,19 @@ function SocialSlider() {
               userSelect: 'none',
               WebkitUserDrag: 'none',
               flexShrink: 0,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
+              boxShadow: '0 4px 15px rgba(124, 58, 237, 3)',
               transition: 'transform 0.2s, box-shadow 0.2s, border-color 0.2s'
             }}
             onMouseEnter={e => {
               if (!isDragging.current) {
                 e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 10px 25px rgba(124, 58, 237, 0.2)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(124, 58, 237, 4)';
                 e.currentTarget.style.borderColor = 'var(--aura-hex)';
               }
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+              e.currentTarget.style.boxShadow = '0 4px 15px rgba(124, 58, 237, 3)';
               e.currentTarget.style.borderColor = 'var(--border)';
             }}
           >
@@ -181,13 +181,13 @@ export default function Contact() {
         <h2 className="section-title">Contact Us</h2>
         <div className="card" style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
           <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-            Hubungi saya jika ingin memikirkan kegabutan bersama.
+            Contact me if you want to sharing or build something. And also I am open for a collaboration project.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
             <a href="mailto:patuangarcia@gmail.com" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 600, fontSize: '1.2rem' }}>
               📧 patuangarcia@gmail.com
             </a>
-            <p style={{ margin: 0 }}>📍 Bekasi, Indonesia</p>
+            <p style={{ margin: 0 }}>📍Indonesia</p>
           </div>
         </div>
 

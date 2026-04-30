@@ -20,14 +20,14 @@
 
 html.dark {
   --primary: #60a5fa;
-  --bg: #0f172a;
-  --surface: #1e293b;
+  --bg: #1b1d23;
+  --surface: #26272e;
   --text-dark: #f8fafc;
   --text-muted: #cbd5e1;
-  --border: #334155;
-  --nav-bg: rgba(15, 23, 42, 0.9);
+  --border: #1f2937;
+  --nav-bg: #1b1d23;
   --btn-primary-bg: #f8fafc;
-  --btn-primary-text: #0f172a;
+  --btn-primary-text: #000000;
   --btn-primary-hover: #cbd5e1;
   --hero-gradient: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
 }
@@ -320,10 +320,117 @@ a {
   margin-top: 2rem;
 }
 
+/* Home Page */
+.home-intro-layer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.home-intro-gif {
+  width: 200px;
+}
+
+.home-intro-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* Desktop Defaults */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  z-index: 101;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Navbar */
+  .nav-logo-img {
+    height: 70px !important;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--nav-bg);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-150%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 90;
+    pointer-events: none;
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Home */
+  .home-intro-layer {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .home-intro-gif {
+    width: 120px;
+  }
+
+  .home-intro-title {
+    font-size: 2rem;
+  }
+
   .hero-title {
     font-size: 3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1.5rem;
   }
 }
 
@@ -656,4 +763,19 @@ a {
   color: var(--aura-hex);
   font-weight: 800;
   text-shadow: 0 0 15px var(--aura-hex);
+}
+
+/* View Transitions API for Theme Toggling */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
 }

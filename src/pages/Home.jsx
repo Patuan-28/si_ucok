@@ -50,11 +50,11 @@ export default function Home() {
         <ParallaxLayer
           offset={0}
           speed={0.5}
-          style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '3rem' }}
+          className="home-intro-layer"
         >
-          <img src={memeGif} alt="Minecraft Meme" style={{ width: '200px' }} />
+          <img src={memeGif} alt="Minecraft Meme" className="home-intro-gif" />
           <div style={{ textAlign: 'center' }}>
-            <h2 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1.5rem' }}>Hello, Welcome to my Website.</h2>
+            <h2 className="home-intro-title">Hello, Welcome to my Website.</h2>
             <button
               onClick={() => parallaxRef.current.scrollTo(1)}
               className="btn btn-outline"
@@ -62,7 +62,7 @@ export default function Home() {
               Go Down! :D
             </button>
           </div>
-          <img src={steveGif} alt="Steve Wave" style={{ width: '200px' }} />
+          <img src={steveGif} alt="Steve Wave" className="home-intro-gif" />
         </ParallaxLayer>
 
         {/* Hero Content */}
@@ -106,7 +106,7 @@ export default function Home() {
             <section id="projects" className="projects-section" style={{ padding: 0 }}>
               <h2 className="section-title">My Stuffs</h2>
               <div className="grid">
-                <Link to="/backend" className="card" style={{ textDecoration: 'none' }}>
+                <Link to="/stuffs" className="card" style={{ textDecoration: 'none' }}>
                   <div className="icon" style={{ fontSize: '2rem' }}>⚙️</div>
                   <h3 className="card-title">Interactive</h3>
                   <p className="card-desc">

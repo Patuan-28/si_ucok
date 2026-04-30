@@ -1,5 +1,6 @@
 .theme-toggle {
-  --base-scale: 20px; /* Scaled down perfectly for text */
+  --base-scale: 20px;
+  /* Scaled down perfectly for text */
   --toggle-width: 5.625em;
   --toggle-height: 2.5em;
   --radius-pill: 100em;
@@ -70,9 +71,7 @@ html.dark .theme-toggle__container {
 }
 
 html.dark .theme-toggle__container .theme-toggle__sun {
-  transform: translateX(
-    calc(var(--toggle-width) - var(--sun-diameter) - var(--sun-offset))
-  );
+  transform: translateX(calc(var(--toggle-width) - var(--sun-diameter) - var(--sun-offset)));
 }
 
 .theme-toggle__moon-mask {
@@ -166,9 +165,5 @@ html.dark .theme-toggle__container .theme-toggle__clouds {
 }
 
 html.dark .theme-toggle__container:hover .theme-toggle__sun {
-  transform: translateX(
-    calc(
-      var(--toggle-width) - var(--sun-diameter) - var(--sun-offset) - 0.187em
-    )
-  );
+  transform: translateX(calc(var(--toggle-width) - var(--sun-diameter) - var(--sun-offset) - 0.187em));
 }

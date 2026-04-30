@@ -20,24 +20,68 @@ export default function ThemeToggle() {
     }
   }, []);
 
-  const toggleTheme = () => {
-    const nextTheme = !isDarkMode;
-    setIsDarkMode(nextTheme);
-    document.documentElement.classList.toggle('dark', nextTheme);
-    
+  const changeTheme = (isDark) => {
+    setIsDarkMode(isDark);
+    document.documentElement.classList.toggle('dark', isDark);
     try {
-      localStorage.setItem('app-theme', nextTheme ? 'dark' : 'light');
+      localStorage.setItem('app-theme', isDark ? 'dark' : 'light');
     } catch (e) {
       console.warn("Could not save theme to localStorage.", e);
     }
   };
 
+  const toggleTheme = (e) => {
+    const nextTheme = !isDarkMode;
+
+    // Check if browser supports View Transitions API
+    if (!document.startViewTransition) {
+      // Fallback
+      changeTheme(nextTheme);
+      return;
+    }
+
+    // Get click position, fallback to center of screen if triggered by keyboard
+    const x = e?.clientX ?? window.innerWidth / 2;
+    const y = e?.clientY ?? window.innerHeight / 2;
+
+    // Calculate the distance to the furthest corner to ensure the circle covers the screen
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    // Start the transition
+    const transition = document.startViewTransition(() => {
+      changeTheme(nextTheme);
+    });
+
+    // Animate the pseudo-elements after the DOM has updated
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`,
+      ];
+
+      document.documentElement.animate(
+        {
+          clipPath: clipPath,
+        },
+        {
+          duration: 600,
+          easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+          // Attach the animation to the new view
+          pseudoElement: '::view-transition-new(root)',
+        }
+      );
+    });
+  };
+
   return (
-    <button 
-      className="theme-toggle" 
+    <button
+      className="theme-toggle"
       onClick={toggleTheme}
-      role="switch" 
-      aria-checked={isDarkMode} 
+      role="switch"
+      aria-checked={isDarkMode}
       aria-label={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
     >
       <div className="theme-toggle__container">
@@ -58,3 +102,4 @@ export default function ThemeToggle() {
     </button>
   );
 }
+
