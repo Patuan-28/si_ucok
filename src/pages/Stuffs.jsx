@@ -6,6 +6,8 @@ import bgBattle from '../assets/pve.png';
 import bgChess from '../assets/chess.png';
 import bgPrime from '../assets/prime.png';
 import bgLock from '../assets/lockpick.png';
+import bgRoblox from '../assets/roblox.png';
+import bgMlbb from '../assets/mlbb.png';
 
 export default function Stuffs() {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -48,6 +50,7 @@ export default function Stuffs() {
           <Link
             to="/stuffs/roblox-avatar"
             className="card stuff-card"
+            style={{ '--bg-image': `url(${bgRoblox})` }}
             onMouseEnter={() => setHoveredCard('roblox')}
             onMouseLeave={() => setHoveredCard(null)}
           >
@@ -66,10 +69,11 @@ export default function Stuffs() {
             </div>
           </Link>
 
-          {/* Mobile Legends Profile Viewer */}
+          {/* Mobile Legends Account Checker */}
           <Link
             to="/stuffs/mlbb-profile"
             className="card stuff-card"
+            style={{ '--bg-image': `url(${bgMlbb})` }}
             onMouseEnter={() => setHoveredCard('mlbb')}
             onMouseLeave={() => setHoveredCard(null)}
           >
@@ -78,8 +82,8 @@ export default function Stuffs() {
                 <div className="card-power-ring"></div>
                 <div className="icon" style={{ fontSize: '3rem' }}>⎝ 𓆩༺ ⚔️ ༻𓆪 ⎠</div>
               </div>
-              <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>Mobile Legends Profile Viewer</h3>
-              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Verifikasi Nickname in-game resmi, User ID, Server & statistik pemain MLBB.</p>
+              <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>Mobile Legends Account Checker</h3>
+              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Verifikasi Nickname in-game resmi, User ID, dan Zone Server Mobile Legends.</p>
 
               <div className="card-power-bar">
                 <div className="card-power-fill" style={{ width: hoveredCard === 'mlbb' ? '99%' : '0%' }}></div>
