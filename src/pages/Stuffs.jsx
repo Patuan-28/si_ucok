@@ -44,6 +44,50 @@ export default function Stuffs() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+          {/* Roblox Avatar Checker */}
+          <Link
+            to="/stuffs/roblox-avatar"
+            className="card stuff-card"
+            onMouseEnter={() => setHoveredCard('roblox')}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+            <div className="stuff-card-content">
+              <div className="card-icon-wrapper">
+                <div className="card-power-ring"></div>
+                <div className="icon" style={{ fontSize: '3rem' }}>⎝ 𓆩༺ 🎮 ༻𓆪 ⎠</div>
+              </div>
+              <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>Roblox Avatar Checker</h3>
+              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Cek & download avatar Roblox HD (Full Body, Bust, Headshot) dengan Username / ID.</p>
+
+              <div className="card-power-bar">
+                <div className="card-power-fill" style={{ width: hoveredCard === 'roblox' ? '98%' : '0%' }}></div>
+              </div>
+              <div className="card-stat">POPULARITY · 98%</div>
+            </div>
+          </Link>
+
+          {/* Mobile Legends Profile Viewer */}
+          <Link
+            to="/stuffs/mlbb-profile"
+            className="card stuff-card"
+            onMouseEnter={() => setHoveredCard('mlbb')}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+            <div className="stuff-card-content">
+              <div className="card-icon-wrapper">
+                <div className="card-power-ring"></div>
+                <div className="icon" style={{ fontSize: '3rem' }}>⎝ 𓆩༺ ⚔️ ༻𓆪 ⎠</div>
+              </div>
+              <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>Mobile Legends Profile Viewer</h3>
+              <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>Verifikasi Nickname in-game resmi, User ID, Server & statistik pemain MLBB.</p>
+
+              <div className="card-power-bar">
+                <div className="card-power-fill" style={{ width: hoveredCard === 'mlbb' ? '99%' : '0%' }}></div>
+              </div>
+              <div className="card-stat">POPULARITY · 99%</div>
+            </div>
+          </Link>
+
           {/* PvE Battle Game */}
           <Link
             to="/stuffs/battle"

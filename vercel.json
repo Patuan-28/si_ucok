@@ -1,6 +1,22 @@
 {
   "rewrites": [
     {
+      "source": "/roblox-users/(.*)",
+      "destination": "https://users.roblox.com/$1"
+    },
+    {
+      "source": "/roblox-thumbnails/(.*)",
+      "destination": "https://thumbnails.roblox.com/$1"
+    },
+    {
+      "source": "/roblox-avatar-api/(.*)",
+      "destination": "https://avatar.roblox.com/$1"
+    },
+    {
+      "source": "/mlbb-check/(.*)",
+      "destination": "https://www.smile.one/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

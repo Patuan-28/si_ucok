@@ -10,6 +10,8 @@ import ChessGamePage from './pages/ChessGamePage';
 import PrimeCheckerPage from './pages/PrimeCheckerPage';
 import Contact from './pages/Contact';
 import LockPickingPage from './pages/LockPickingPage';
+import RobloxAvatarPage from './pages/RobloxAvatarPage';
+import MLBBProfilePage from './pages/MLBBProfilePage';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
             <Route path="/stuffs/chess" element={<ChessGamePage />} />
             <Route path="/stuffs/prime-checker" element={<PrimeCheckerPage />} />
             <Route path="/stuffs/lock-picking" element={<LockPickingPage />} />
+            <Route path="/stuffs/roblox-avatar" element={<RobloxAvatarPage />} />
+            <Route path="/stuffs/mlbb-profile" element={<MLBBProfilePage />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
